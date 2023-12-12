@@ -42,6 +42,32 @@ class post{
       }
 
       // get new informations function ...
+      function getInformations($conn){
+
+        $sql="SELECT title, text FROM news ORDER BY id DESC;";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+          // output data of each row
+          while($row = mysqli_fetch_assoc($result)) {
+            echo' 
+            <p  dir="auto">
+                    <strong  dir="auto">'.$row['title'].' </strong><br>
+                    '.$row['text'].' 
+                </p>
+            
+            ';
+          }
+        }
+
+       
+
+
+
+        
+        
+        
+      }
 
       
     
