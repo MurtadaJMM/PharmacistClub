@@ -3,12 +3,13 @@
   require"ofiles/operations.php";
   $newspost=new post();
 //........ use class for input
-
+    $dt=strval( date("Y-m-d H:i") ) ;
     if(isset($_POST['submit'])){
             $newspost->set_title($_POST['title']);
             $newspost->set_text($_POST['newstext']);
+            $newspost->set_dt($dt);;
 
-            $newspost->postinformations($conn,$newspost->title,$newspost->text);
+            $newspost->postinformations($conn,$newspost->title,$newspost->text,$newspost->dt);
 
     }
 

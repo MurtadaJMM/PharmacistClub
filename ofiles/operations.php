@@ -8,6 +8,7 @@ class post{
     public $text;
     public $poster;
     public $email;
+    public $dt;
     
     // functions
     //set value
@@ -26,12 +27,15 @@ class post{
       function set_email($email) {
         $this->email = $email;
       }
+      function set_dt($dt){
+        $this->dt=$dt;
+      }
 
       //post value
-      function postinformations($conn,$title,$text){
+      function postinformations($conn,$title,$text,$dt){
         
-        $sql="INSERT INTO news (title, text)
-        VALUES ('$title','$text')";
+        $sql="INSERT INTO news (title, text, dt)
+        VALUES ('$title','$text','$dt')";
         if (mysqli_query($conn, $sql)) {
             echo "infomation recorded successfully";
           } else {
@@ -44,7 +48,7 @@ class post{
       // get new informations function ...
       function getInformations($conn){
 
-        $sql="SELECT title, text FROM news ORDER BY id DESC;";
+        $sql="SELECT title, text , dt FROM news ORDER BY id DESC;";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
@@ -54,7 +58,9 @@ class post{
             <p  dir="auto">
                     <strong  dir="auto">'.$row['title'].' </strong><br>
                     '.$row['text'].' 
-                </p>
+                  
+                <br><span>'.$row['dt'].'</span></p>
+                
             
             ';
           }

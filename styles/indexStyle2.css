@@ -25,6 +25,9 @@
 strong{
     font-family: 'Scheherazade', serif; font-size:30px
 }
+span{
+    font-size: medium;
+}
 a{
    
     color: black;
