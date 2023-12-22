@@ -20,14 +20,16 @@
 strong{
         font-size: 15px;
         font-style: italic;
-        padding-left: 40px;
+        padding-right: 10px;
+        padding-top: 5px;
         word-wrap: break-word;
+        float: right;
         
 
 
 }
 #tow{
-    background-color: rgb(255, 127, 77);
+    background-color: rgb(155, 149, 241);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
@@ -42,8 +44,6 @@ strong{
 }
 #left{
     width: 20%;
-    height: 300px;
-    border: 1px black;
     margin: auto;
     float: left;
 }
@@ -70,7 +70,11 @@ strong{
 
 }
 a{
-    padding-left: 50px;
+    color: black;
+    text-decoration: none;
+    padding: 5px; 
+    display: block;
+    color: black;
 }
 h3{
     padding-left: 40px;
@@ -101,6 +105,7 @@ label{
 
 span{
     font-size: 30px;
+   
     color :black;
     padding-left: 30px;
     max-width:inherit;
