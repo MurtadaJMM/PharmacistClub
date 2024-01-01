@@ -1,11 +1,19 @@
 <?php
+session_start();
+$_SESSION['lastid']="";
      require "ofiles/conn.php";
-    
+
+       
     function display($connect){
             $sql="SELECT poster,dt,title, content, email FROM postinfo ORDER BY id DESC limit 10;";
+            $lastIdQuery="SELECT MAX(id) AS Largestid FROM postinfo;";
             $result = mysqli_query($connect, $sql);
+            $lastIdresult = mysqli_query($connect, $lastIdQuery);
+            $lastIdNow= mysqli_fetch_assoc($lastIdresult);
+            $_SESSION['lastid'] = $lastIdNow['Largestid'];
 
-            $idnow= 1; 
+
+             
 
             if (mysqli_num_rows($result) > 0) {
                 // output data of each row
@@ -17,9 +25,9 @@
                   <p>'.$row['content'].'</p>
                   <h3 id="em">by: '.$row['email'].'</h3></div>
                   ';
-                  $idnow++;
+                  --$_SESSION['lastid'];
                 }
-                echo '<button type="button" onclick="getmore('.$idnow.')" >load more</button>';
+                echo '<button id="'.$_SESSION['lastid'].'" type="button" onclick="getmore('.$_SESSION['lastid'].')" >load more</button>';
               }                                                       
     }
 
@@ -68,12 +76,13 @@
             var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("more").innerHTML = this.responseText;
+        document.getElementById("more").innerHTML += this.responseText;
       }
     };
-    xmlhttp.open("GET","ofiles/getmore.php?id="+id,true);
+    xmlhttp.open("GET","ofiles/getmore.php",true);
     xmlhttp.send();
 
+    document.getElementById(id).style.display = "none";
         }
 
 

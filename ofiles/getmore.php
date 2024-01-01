@@ -1,9 +1,10 @@
 <?php
+session_start();
     require "conn.php";
 
 
-    $idhere=$_GET['id'];
-    $sql="SELECT poster,dt,title, content, email FROM postinfo WHERE id > '".$idhere."' ORDER BY id DESC limit 10;";
+    
+    $sql="SELECT poster,dt,title, content, email FROM postinfo WHERE id < '".$_SESSION['lastid']."' ORDER BY id DESC limit 10;";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
@@ -16,10 +17,12 @@
           <p>'.$row['content'].'</p>
           <h3 id="em">by: '.$row['email'].'</h3></div>
           ';
-          $idhere++;
+          --$_SESSION['lastid'];
         }
-        echo '<button type="button" onclick="getmore('.$idhere.')" >load more</button>';
-      } 
+        echo '<button id= "'.$_SESSION['lastid'].'" type="button" onclick="getmore('.$_SESSION['lastid'].')" >load more</button>';
+      } else{
+        echo"no more data";
+      }
     
     
     
