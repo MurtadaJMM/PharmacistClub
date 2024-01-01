@@ -19,10 +19,10 @@ $_SESSION['lastid']="";
                 // output data of each row
                 while($row = mysqli_fetch_assoc($result)) {
                   echo' <div id="displaydiv"><div id="tow"> 
-                  <span>   by: '.$row['poster'].'</span>
-                  <strong id="title">'.$row['dt'].'</strong></div>
-                  <h3 id="dt">'.$row['title'].'</h3>
-                  <p>'.$row['content'].'</p>
+                  <span dir="auto" >   by: '.$row['poster'].'</span>
+                  <strong id="title" dir="auto" >'.$row['dt'].'</strong></div>
+                  <h3 id="dt" dir="auto" >'.$row['title'].'</h3>
+                  <p dir="auto" >'.$row['content'].'</p>
                   <h3 id="em">by: '.$row['email'].'</h3></div>
                   ';
                   --$_SESSION['lastid'];
